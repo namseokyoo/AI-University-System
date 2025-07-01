@@ -37,7 +37,7 @@ class Settings(BaseSettings):
 
     # AI API 설정
     DEEPSEEK_API_KEY: Optional[str] = None
-    DEEPSEEK_BASE_URL: str = "https://api.deepseek.com"
+    DEEPSEEK_API_URL: str = "https://api.deepseek.com"
 
     # YouTube API 설정
     YOUTUBE_API_KEY: Optional[str] = None

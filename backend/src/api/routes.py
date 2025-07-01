@@ -8,11 +8,18 @@ from typing import Dict, Any, List, Optional
 from pydantic import BaseModel
 from datetime import datetime
 
+# 인증 라우터 임포트
+from .auth import router as auth_router
+
 # 라우터 인스턴스 생성
 api_router = APIRouter()
 
+# 인증 라우터 포함
+api_router.include_router(auth_router)
 
 # Request/Response 모델들
+
+
 class CourseGenerationRequest(BaseModel):
     topic: str
     skill_level: str = "beginner"
@@ -57,16 +64,51 @@ async def api_root():
 async def api_status():
     """API 상태 확인"""
     from ..core.config import settings
+    from supabase import create_client
+    import os
+
+    # Supabase 연결 상태 확인
+    database_status = "not_connected"
+    try:
+        url = os.getenv('SUPABASE_URL')
+        key = os.getenv('SUPABASE_KEY')
+        if url and key:
+            supabase = create_client(url, key)
+            # 간단한 쿼리로 연결 테스트
+            result = supabase.table("users").select(
+                "count", count="exact").limit(0).execute()
+            database_status = "connected"
+    except Exception:
+        database_status = "error"
 
     return {
         "api_version": "v1",
         "status": "healthy",
         "timestamp": datetime.now().isoformat(),
         "services": {
-            "database": "not_connected",  # 추후 실제 검사
-            "cache": "not_connected",     # 추후 실제 검사
+            "database": database_status,
+            "auth": "configured" if database_status == "connected" else "not_configured",
+            "cache": "not_implemented",
             "ai_service": "configured" if settings.DEEPSEEK_API_KEY else "not_configured",
             "youtube_service": "configured" if settings.YOUTUBE_API_KEY else "not_configured"
+        },
+        "endpoints": {
+            "auth": {
+                "signup": "/auth/signup",
+                "signin": "/auth/signin",
+                "signout": "/auth/signout",
+                "me": "/auth/me",
+                "verify_token": "/auth/verify-token",
+                "refresh": "/auth/refresh"
+            },
+            "ai": {
+                "generate_course": "/ai/generate-course",
+                "evaluate": "/ai/evaluate"
+            },
+            "youtube": {
+                "search": "/youtube/search",
+                "recommend": "/youtube/recommend/{topic}"
+            }
         }
     }
 
