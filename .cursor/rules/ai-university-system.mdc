@@ -175,6 +175,79 @@ frontend/
 - 통합 테스트: 핵심 API 100%
 - E2E 테스트: 주요 사용자 플로우 100%
 
+## Git 브랜치 전략
+
+### 브랜치 구조
+```
+main                    # 🟢 안정적인 프로덕션 코드
+├── develop            # 🟣 개발 통합 브랜치
+├── feature/기능명      # 🔵 새로운 기능 개발
+├── fix/버그명         # 🟡 버그 수정
+├── hotfix/긴급수정    # 🔴 긴급 프로덕션 수정
+└── docs/문서작업      # 📝 문서 업데이트
+```
+
+### 브랜치 명명 규칙
+- **feature/**: 새로운 기능 개발
+  - `feature/phase-2-5-frontend-auth`
+  - `feature/user-dashboard`
+  - `feature/ai-course-generator`
+- **fix/**: 버그 수정
+  - `fix/cors-configuration`
+  - `fix/auth-token-validation`
+- **hotfix/**: 긴급 프로덕션 수정
+  - `hotfix/security-patch`
+  - `hotfix/payment-bug`
+- **docs/**: 문서 작업
+  - `docs/api-documentation`
+  - `docs/readme-update`
+
+### 개발 워크플로우
+1. **새로운 기능 시작**
+   ```bash
+   git checkout develop
+   git pull origin develop
+   git checkout -b feature/새기능명
+   ```
+
+2. **작업 완료 및 푸시**
+   ```bash
+   git add .
+   git commit -m "feat(scope): 기능 설명"
+   git push origin feature/새기능명
+   ```
+
+3. **Pull Request 생성**
+   - GitHub에서 `feature/새기능명` → `develop`로 PR 생성
+   - 코드 리뷰 및 테스트 통과 후 merge
+
+4. **릴리즈 준비**
+   ```bash
+   git checkout main
+   git merge develop
+   git tag v1.0.0
+   git push origin main --tags
+   ```
+
+### 브랜치 보호 규칙
+- **main**: 직접 push 금지, PR을 통해서만 merge
+- **develop**: 코드 리뷰 필수, 테스트 통과 필수
+- **feature/**: 자유롭게 push 가능, 정기적으로 develop과 동기화
+
+### 커밋 메시지 규칙
+- `feat(scope): 새로운 기능 추가`
+- `fix(scope): 버그 수정`
+- `docs(scope): 문서 업데이트`
+- `style(scope): 코드 포맷팅`
+- `refactor(scope): 코드 리팩토링`
+- `test(scope): 테스트 추가/수정`
+- `chore(scope): 기타 작업`
+
+### Phase별 브랜치 전략
+- **Phase 1**: `main`에서 직접 작업 (완료)
+- **Phase 2+**: Feature Branch 워크플로우 적용
+- **릴리즈**: develop → main으로 stable 버전 관리
+
 ## 개발 진행 사항 추적
 
 ### 개발 로그 관리
