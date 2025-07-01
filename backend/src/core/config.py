@@ -73,7 +73,7 @@ class Settings(BaseSettings):
     class Config:
         env_file = ".env"
         env_file_encoding = "utf-8"
-        case_sensitive = True
+        case_sensitive = False  # 대소문자 구분 해제
 
 
 # 전역 설정 인스턴스
