@@ -161,11 +161,54 @@ npm run dev
 
 ## 🤝 기여하기
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+### 브랜치 전략
+
+이 프로젝트는 **Feature Branch 워크플로우**를 사용합니다:
+
+```bash
+main                    # 🟢 안정적인 프로덕션 코드
+├── develop            # 🟣 개발 통합 브랜치  
+├── feature/기능명      # 🔵 새로운 기능 개발
+├── fix/버그명         # 🟡 버그 수정
+├── hotfix/긴급수정    # 🔴 긴급 수정
+└── docs/문서작업      # 📝 문서 업데이트
+```
+
+### 개발 워크플로우
+
+1. **develop 브랜치에서 시작**
+   ```bash
+   git checkout develop
+   git pull origin develop
+   ```
+
+2. **Feature 브랜치 생성**
+   ```bash
+   git checkout -b feature/amazing-feature
+   ```
+
+3. **변경사항 커밋**
+   ```bash
+   git add .
+   git commit -m "feat(feature): Add amazing feature"
+   ```
+
+4. **브랜치 푸시**
+   ```bash
+   git push origin feature/amazing-feature
+   ```
+
+5. **Pull Request 생성**
+   - GitHub에서 `feature/amazing-feature` → `develop`로 PR 생성
+   - 코드 리뷰 및 승인 후 merge
+
+### 커밋 메시지 규칙
+
+- `feat(scope): 새로운 기능`
+- `fix(scope): 버그 수정`  
+- `docs(scope): 문서 업데이트`
+- `refactor(scope): 코드 리팩토링`
+- `test(scope): 테스트 추가`
 
 ## 📄 라이선스
 
