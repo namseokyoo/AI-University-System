@@ -22,7 +22,7 @@ class CourseCreateRequest(BaseModel):
     title: str = Field(..., min_length=1, max_length=200, description="코스 제목")
     description: str = Field(..., min_length=10, description="코스 설명")
     difficulty_level: str = Field(
-        "beginner", description="난이도", regex="^(beginner|intermediate|advanced|expert)$")
+        "beginner", description="난이도", pattern="^(beginner|intermediate|advanced|expert)$")
     estimated_duration_hours: Optional[int] = Field(
         None, ge=1, le=200, description="예상 학습 시간 (시간)")
     learning_objectives: Optional[List[str]] = Field(
@@ -38,7 +38,7 @@ class AICourseCreateRequest(BaseModel):
     """AI 코스 생성 요청"""
     topic: str = Field(..., min_length=2, max_length=100, description="코스 주제")
     difficulty_level: str = Field(
-        "beginner", description="난이도", regex="^(beginner|intermediate|advanced|expert)$")
+        "beginner", description="난이도", pattern="^(beginner|intermediate|advanced|expert)$")
     target_hours: int = Field(..., ge=1, le=200, description="목표 학습 시간 (시간)")
     additional_requirements: Optional[str] = Field(
         None, max_length=1000, description="추가 요구사항")

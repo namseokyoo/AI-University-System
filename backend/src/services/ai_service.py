@@ -327,3 +327,6 @@ JSON만 응답하고 다른 설명은 포함하지 마세요.
 
 # 기존 DeepseekAIService를 AIService로 통합하여 호환성 유지
 DeepseekAIService = AIService
+
+# 전역 인스턴스 생성
+ai_service = AIService()

@@ -3,6 +3,7 @@
 환경 변수 기반 설정 시스템
 """
 from pydantic_settings import BaseSettings
+from pydantic import ConfigDict
 from typing import List, Optional
 import os
 
@@ -37,7 +38,7 @@ class Settings(BaseSettings):
 
     # AI API 설정
     DEEPSEEK_API_KEY: Optional[str] = None
-    DEEPSEEK_API_URL: str = "https://api.deepseek.com"
+    DEEPSEEK_BASE_URL: str = "https://api.deepseek.com/v1"
 
     # YouTube API 설정
     YOUTUBE_API_KEY: Optional[str] = None
@@ -70,10 +71,12 @@ class Settings(BaseSettings):
     R2_SECRET_KEY: Optional[str] = None
     R2_BUCKET_NAME: str = "ai-university-media"
 
-    class Config:
-        env_file = ".env"
-        env_file_encoding = "utf-8"
-        case_sensitive = False  # 대소문자 구분 해제
+    model_config = ConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        case_sensitive=False,
+        extra="ignore"  # 추가 필드 무시
+    )
 
 
 # 전역 설정 인스턴스
