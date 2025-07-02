@@ -1,9 +1,20 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useAuth } from '@/contexts/AuthContext'
+import { useRouter } from 'next/navigation'
 
 export default function HomePage() {
     const [backendStatus, setBackendStatus] = useState<string>('연결 확인 중...')
+    const { user, loading } = useAuth()
+    const router = useRouter()
+
+    useEffect(() => {
+        // 인증된 사용자는 대시보드로 리다이렉트
+        if (!loading && user) {
+            router.push('/dashboard')
+        }
+    }, [user, loading, router])
 
     useEffect(() => {
         // 백엔드 연결 상태 확인
@@ -23,6 +34,20 @@ export default function HomePage() {
         checkBackendStatus()
     }, [])
 
+    // 로딩 중일 때
+    if (loading) {
+        return (
+            <div className="flex items-center justify-center min-h-screen">
+                <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
+            </div>
+        )
+    }
+
+    // 인증된 사용자는 대시보드로 리다이렉트 (이미 위에서 처리됨)
+    if (user) {
+        return null
+    }
+
     return (
         <div className="container mx-auto px-4 py-16">
             {/* 헤더 섹션 */}
@@ -34,12 +59,18 @@ export default function HomePage() {
                     AI를 배우는 모든 이들을 위한 개인화된 대학 교육 플랫폼
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <button className="btn-primary text-lg px-8 py-3 rounded-lg">
-                        학습 시작하기
-                    </button>
-                    <button className="border border-border px-8 py-3 rounded-lg hover:bg-accent transition-colors">
-                        둘러보기
-                    </button>
+                    <a
+                        href="/auth/signin"
+                        className="inline-flex items-center justify-center bg-blue-600 text-white text-lg px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+                    >
+                        로그인하기
+                    </a>
+                    <a
+                        href="/auth/signup"
+                        className="inline-flex items-center justify-center border border-gray-300 text-gray-700 px-8 py-3 rounded-lg hover:bg-gray-50 transition-colors"
+                    >
+                        회원가입
+                    </a>
                 </div>
             </div>
 
@@ -114,19 +145,23 @@ export default function HomePage() {
             </div>
 
             {/* 개발 진행 상황 */}
-            <div className="card p-8">
+            <div className="bg-white shadow rounded-lg p-8">
                 <h2 className="text-2xl font-bold mb-6">🚧 개발 진행 상황</h2>
                 <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                        <span>✅ Phase 1.1: 프로젝트 기반 구축</span>
+                        <span>✅ Phase 1: 프로젝트 기반 구축</span>
                         <span className="text-green-600 font-medium">완료</span>
                     </div>
                     <div className="flex items-center justify-between">
-                        <span>🔄 Phase 1.2: 외부 서비스 연동</span>
+                        <span>✅ Phase 2.4: 백엔드 인증 시스템</span>
+                        <span className="text-green-600 font-medium">완료</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                        <span>🔄 Phase 2.5: 프론트엔드 인증 시스템</span>
                         <span className="text-yellow-600 font-medium">진행 중</span>
                     </div>
                     <div className="flex items-center justify-between">
-                        <span>⏳ Phase 2: 인증 및 사용자 관리</span>
+                        <span>⏳ Phase 3: 코스 관리 시스템</span>
                         <span className="text-gray-400 font-medium">대기 중</span>
                     </div>
                 </div>
