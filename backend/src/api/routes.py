@@ -10,12 +10,15 @@ from datetime import datetime
 
 # 인증 라우터 임포트
 from .auth import router as auth_router
+# 코스 라우터 임포트
+from .courses import router as courses_router
 
 # 라우터 인스턴스 생성
 api_router = APIRouter()
 
-# 인증 라우터 포함
+# 라우터 포함
 api_router.include_router(auth_router)
+api_router.include_router(courses_router)
 
 # Request/Response 모델들
 

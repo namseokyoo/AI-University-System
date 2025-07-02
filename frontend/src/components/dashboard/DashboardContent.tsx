@@ -1,6 +1,7 @@
 'use client'
 
 import { useAuth } from '@/contexts/AuthContext'
+import CourseList from '@/components/courses/CourseList'
 
 export default function DashboardContent() {
     const { user, signOut } = useAuth()
@@ -123,6 +124,39 @@ export default function DashboardContent() {
                                         </dl>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* 최신 코스 목록 */}
+                    <div className="mt-8">
+                        <div className="bg-white shadow rounded-lg">
+                            <div className="px-6 py-4 border-b border-gray-200">
+                                <div className="flex items-center justify-between">
+                                    <div>
+                                        <h3 className="text-lg leading-6 font-medium text-gray-900">
+                                            최신 코스
+                                        </h3>
+                                        <p className="mt-1 text-sm text-gray-500">
+                                            새롭게 추가된 코스들을 확인해보세요.
+                                        </p>
+                                    </div>
+                                    <button
+                                        onClick={() => window.location.href = '/courses'}
+                                        className="text-blue-600 text-sm font-medium hover:text-blue-500"
+                                    >
+                                        전체 보기 →
+                                    </button>
+                                </div>
+                            </div>
+                            <div className="p-6">
+                                <CourseList
+                                    showFilters={false}
+                                    showCreateButton={false}
+                                    onCourseClick={(course) => {
+                                        window.location.href = `/courses/${course.slug}`;
+                                    }}
+                                />
                             </div>
                         </div>
                     </div>
