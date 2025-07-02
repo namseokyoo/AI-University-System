@@ -153,4 +153,4 @@ model-cache/
 # Temporary files
 temp/
 tmp/
-*.tmp 
+*.tmp *.secure
