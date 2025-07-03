@@ -3,49 +3,135 @@
 @tailwind utilities;
 
 @layer base {
-    :root {
-        --background: 0 0% 100%;
-        --foreground: 222.2 84% 4.9%;
-        --card: 0 0% 100%;
-        --card-foreground: 222.2 84% 4.9%;
-        --popover: 0 0% 100%;
-        --popover-foreground: 222.2 84% 4.9%;
-        --primary: 222.2 47.4% 11.2%;
-        --primary-foreground: 210 40% 98%;
-        --secondary: 210 40% 96%;
-        --secondary-foreground: 222.2 47.4% 11.2%;
-        --muted: 210 40% 96%;
-        --muted-foreground: 215.4 16.3% 46.9%;
-        --accent: 210 40% 96%;
-        --accent-foreground: 222.2 47.4% 11.2%;
-        --destructive: 0 84.2% 60.2%;
-        --destructive-foreground: 210 40% 98%;
-        --border: 214.3 31.8% 91.4%;
-        --input: 214.3 31.8% 91.4%;
-        --ring: 222.2 84% 4.9%;
-        --radius: 0.5rem;
+
+    /* AI University Black Theme System */
+    :root[data-theme="dark"] {
+        /* Base Colors - Pure Black Foundation */
+        --bg-primary: #000000;
+        /* Pure Black - Main Background */
+        --bg-secondary: #0a0a0a;
+        /* Rich Black - Secondary Background */
+        --bg-tertiary: #1a1a1a;
+        /* Dark Gray - Card/Modal Background */
+        --bg-elevated: #2a2a2a;
+        /* Elevated Black - Hover States */
+
+        /* AI Accent Colors */
+        --accent-primary: #00d4ff;
+        /* Cyan Blue - AI/Tech Theme */
+        --accent-secondary: #ff6b00;
+        /* Electric Orange - Learning Progress */
+        --accent-tertiary: #00ff88;
+        /* Mint Green - Success States */
+
+        /* Text Colors */
+        --text-primary: #ffffff;
+        /* Pure White - Main Text */
+        --text-secondary: #b4b4b4;
+        /* Light Gray - Secondary Text */
+        --text-tertiary: #6b6b6b;
+        /* Medium Gray - Placeholder Text */
+        --text-muted: #404040;
+        /* Dark Gray - Disabled Text */
+
+        /* Status Colors */
+        --success: #00ff88;
+        /* Completion, Achievement */
+        --warning: #ffaa00;
+        /* In Progress, Attention */
+        --error: #ff4444;
+        /* Error, Failed */
+        --info: #00d4ff;
+        /* Information, New */
+
+        /* Learning Status */
+        --progress-bg: #1a1a1a;
+        /* Progress Bar Background */
+        --progress-fill: #00d4ff;
+        /* Progress Bar Fill */
+        --achievement: #ffd700;
+        /* Gold - Special Achievements */
+
+        /* Borders & Effects */
+        --border-primary: #333333;
+        /* Subtle Borders */
+        --border-secondary: #1a1a1a;
+        /* Lighter Borders */
+        --border-accent: #00d4ff;
+        /* Highlighted Borders */
+
+        /* Shadows & Glows */
+        --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.8);
+        --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.6);
+        --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.4);
+        --glow-primary: 0 0 20px rgba(0, 212, 255, 0.3);
+        --glow-accent: 0 0 15px rgba(255, 107, 0, 0.2);
+
+        /* Tailwind Compatible Variables */
+        --background: 0 0% 0%;
+        /* Pure Black */
+        --foreground: 0 0% 100%;
+        /* Pure White */
+        --card: 0 0% 10%;
+        /* Dark Card Background */
+        --card-foreground: 0 0% 100%;
+        /* White Text */
+        --popover: 0 0% 6%;
+        /* Popover Background */
+        --popover-foreground: 0 0% 100%;
+        /* Popover Text */
+        --primary: 194 100% 50%;
+        /* Cyan Primary */
+        --primary-foreground: 0 0% 0%;
+        /* Black on Primary */
+        --secondary: 0 0% 16%;
+        /* Dark Secondary */
+        --secondary-foreground: 0 0% 100%;
+        /* White Secondary Text */
+        --muted: 0 0% 10%;
+        /* Muted Background */
+        --muted-foreground: 0 0% 70%;
+        /* Muted Text */
+        --accent: 194 100% 50%;
+        /* Accent Color */
+        --accent-foreground: 0 0% 0%;
+        /* Accent Text */
+        --destructive: 0 100% 60%;
+        /* Error Red */
+        --destructive-foreground: 0 0% 100%;
+        /* Error Text */
+        --border: 0 0% 20%;
+        /* Border Color */
+        --input: 0 0% 10%;
+        /* Input Background */
+        --ring: 194 100% 50%;
+        /* Focus Ring */
+        --radius: 0.75rem;
+        /* Border Radius */
     }
 
-    .dark {
-        --background: 222.2 84% 4.9%;
-        --foreground: 210 40% 98%;
-        --card: 222.2 84% 4.9%;
-        --card-foreground: 210 40% 98%;
-        --popover: 222.2 84% 4.9%;
-        --popover-foreground: 210 40% 98%;
-        --primary: 210 40% 98%;
-        --primary-foreground: 222.2 47.4% 11.2%;
-        --secondary: 217.2 32.6% 17.5%;
-        --secondary-foreground: 210 40% 98%;
-        --muted: 217.2 32.6% 17.5%;
-        --muted-foreground: 215 20.2% 65.1%;
-        --accent: 217.2 32.6% 17.5%;
-        --accent-foreground: 210 40% 98%;
-        --destructive: 0 62.8% 30.6%;
-        --destructive-foreground: 210 40% 98%;
-        --border: 217.2 32.6% 17.5%;
-        --input: 217.2 32.6% 17.5%;
-        --ring: 212.7 26.8% 83.9%;
+    /* Default Dark Theme (Fallback) */
+    :root {
+        --background: 0 0% 0%;
+        --foreground: 0 0% 100%;
+        --card: 0 0% 10%;
+        --card-foreground: 0 0% 100%;
+        --popover: 0 0% 6%;
+        --popover-foreground: 0 0% 100%;
+        --primary: 194 100% 50%;
+        --primary-foreground: 0 0% 0%;
+        --secondary: 0 0% 16%;
+        --secondary-foreground: 0 0% 100%;
+        --muted: 0 0% 10%;
+        --muted-foreground: 0 0% 70%;
+        --accent: 194 100% 50%;
+        --accent-foreground: 0 0% 0%;
+        --destructive: 0 100% 60%;
+        --destructive-foreground: 0 0% 100%;
+        --border: 0 0% 20%;
+        --input: 0 0% 10%;
+        --ring: 194 100% 50%;
+        --radius: 0.75rem;
     }
 }
 
@@ -56,20 +142,255 @@
 
     body {
         @apply bg-background text-foreground;
+        font-family: 'Inter Variable', 'Pretendard Variable', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+    }
+
+    html {
+        background: var(--bg-primary);
     }
 }
 
-/* 커스텀 스타일 */
+/* AI University Black Theme Components */
 @layer components {
+
+    /* Primary Button - Main Actions */
     .btn-primary {
-        @apply bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-md transition-colors;
+        background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+        color: #000000;
+        border: none;
+        font-weight: 600;
+        padding: 12px 24px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        @apply inline-flex items-center justify-center;
     }
 
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--glow-primary);
+    }
+
+    /* Secondary Button - Secondary Actions */
+    .btn-secondary {
+        background: transparent;
+        color: var(--text-primary);
+        border: 1px solid var(--border-primary);
+        font-weight: 500;
+        padding: 12px 24px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        @apply inline-flex items-center justify-center;
+    }
+
+    .btn-secondary:hover {
+        background: var(--bg-tertiary);
+        border-color: var(--accent-primary);
+    }
+
+    /* Ghost Button - Subtle Actions */
+    .btn-ghost {
+        background: transparent;
+        color: var(--text-secondary);
+        border: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        @apply inline-flex items-center justify-center;
+    }
+
+    .btn-ghost:hover {
+        color: var(--text-primary);
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* Main Card - Content Containers */
     .card {
-        @apply bg-card text-card-foreground shadow-sm rounded-lg border;
+        background: var(--bg-tertiary);
+        border: 1px solid var(--border-primary);
+        border-radius: 12px;
+        padding: 24px;
+        transition: all 0.3s ease;
     }
 
+    .card:hover {
+        border-color: var(--accent-primary);
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    /* Glass Card - Overlay Content */
+    .card-glass {
+        background: rgba(26, 26, 26, 0.8);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        padding: 24px;
+    }
+
+    /* Text Input */
     .input {
-        @apply flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+        background: var(--bg-tertiary);
+        border: 2px solid var(--border-primary);
+        border-radius: 8px;
+        color: var(--text-primary);
+        padding: 12px 16px;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        @apply w-full;
+    }
+
+    .input:focus {
+        border-color: var(--accent-primary);
+        box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+        outline: none;
+    }
+
+    .input::placeholder {
+        color: var(--text-tertiary);
+    }
+
+    /* Hover Effects */
+    .hover-lift {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hover-lift:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+    }
+
+    /* Glow Effect */
+    .glow-primary {
+        box-shadow: var(--glow-primary);
+    }
+
+    .glow-accent {
+        box-shadow: var(--glow-accent);
+    }
+
+    /* Progress Bar */
+    .progress-bar {
+        background: var(--progress-bg);
+        border-radius: 8px;
+        overflow: hidden;
+        height: 8px;
+    }
+
+    .progress-fill {
+        background: linear-gradient(90deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+        height: 100%;
+        transition: width 0.5s ease;
+    }
+
+    /* Status Indicators */
+    .status-success {
+        color: var(--success);
+    }
+
+    .status-warning {
+        color: var(--warning);
+    }
+
+    .status-error {
+        color: var(--error);
+    }
+
+    .status-info {
+        color: var(--info);
+    }
+
+    /* Text Color Classes */
+    .text-text-primary {
+        color: var(--text-primary);
+    }
+
+    .text-text-secondary {
+        color: var(--text-secondary);
+    }
+
+    .text-text-tertiary {
+        color: var(--text-tertiary);
+    }
+
+    .text-text-muted {
+        color: var(--text-muted);
+    }
+
+    /* Background Color Classes */
+    .bg-bg-primary {
+        background-color: var(--bg-primary);
+    }
+
+    .bg-bg-secondary {
+        background-color: var(--bg-secondary);
+    }
+
+    .bg-bg-tertiary {
+        background-color: var(--bg-tertiary);
+    }
+
+    .bg-bg-elevated {
+        background-color: var(--bg-elevated);
+    }
+
+    /* Accent Color Classes */
+    .text-accent-primary {
+        color: var(--accent-primary);
+    }
+
+    .text-accent-secondary {
+        color: var(--accent-secondary);
+    }
+
+    .text-accent-tertiary {
+        color: var(--accent-tertiary);
+    }
+
+    /* Border Color Classes */
+    .border-border-primary {
+        border-color: var(--border-primary);
+    }
+
+    .border-border-secondary {
+        border-color: var(--border-secondary);
+    }
+
+    .border-border-accent {
+        border-color: var(--border-accent);
+    }
+
+    /* Gradient Classes */
+    .bg-gradient-radial {
+        background: radial-gradient(circle at center, var(--tw-gradient-stops));
+    }
+
+    /* Group Hover Effects */
+    .group:hover .group-hover\:glow-primary {
+        box-shadow: var(--glow-primary);
+    }
+
+    .group:hover .group-hover\:glow-accent {
+        box-shadow: var(--glow-accent);
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    :root {
+        --text-primary: #ffffff;
+        --bg-primary: #000000;
+        --border-primary: #ffffff;
+        --accent-primary: #ffffff;
     }
 }

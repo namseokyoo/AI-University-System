@@ -3,7 +3,11 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { AuthProvider } from '@/contexts/AuthContext'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({
+    subsets: ['latin'],
+    display: 'swap',
+    variable: '--font-inter'
+})
 
 export const metadata: Metadata = {
     title: 'AI University System',
@@ -20,10 +24,15 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <html lang="ko" suppressHydrationWarning>
-            <body className={inter.className}>
+        <html lang="ko" data-theme="dark" suppressHydrationWarning>
+            <head>
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+                <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+            </head>
+            <body className={`${inter.variable} font-sans antialiased`}>
                 <AuthProvider>
-                    <div className="min-h-screen bg-background font-sans antialiased">
+                    <div className="min-h-screen bg-background text-foreground">
                         {children}
                     </div>
                 </AuthProvider>

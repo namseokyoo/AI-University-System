@@ -39,88 +39,95 @@ export default function LoginForm({ onSuccess, redirectTo = '/dashboard' }: Logi
     }
 
     return (
-        <div className="w-full max-w-md mx-auto">
-            <div className="bg-white shadow-lg rounded-lg px-8 py-6">
-                <h2 className="text-2xl font-bold text-center text-gray-900 mb-6">
+        <div className="w-full">
+            <div className="text-center mb-8">
+                <h2 className="text-3xl font-bold text-text-primary mb-2">
                     로그인
                 </h2>
+                <p className="text-text-secondary">
+                    AI University 계정으로 로그인하세요
+                </p>
+            </div>
 
-                {error && (
-                    <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded mb-4">
-                        {error}
+            {error && (
+                <div className="bg-bg-tertiary border border-error/30 text-error px-4 py-3 rounded-lg mb-6 backdrop-blur-sm">
+                    <div className="flex items-center space-x-2">
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                        </svg>
+                        <span>{error}</span>
                     </div>
-                )}
+                </div>
+            )}
 
-                <form onSubmit={handleSubmit} className="space-y-4">
-                    <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                            이메일
-                        </label>
-                        <input
-                            id="email"
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                            placeholder="이메일을 입력하세요"
-                            disabled={isLoading}
-                        />
-                    </div>
-
-                    <div>
-                        <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-                            비밀번호
-                        </label>
-                        <input
-                            id="password"
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                            placeholder="비밀번호를 입력하세요"
-                            disabled={isLoading}
-                        />
-                    </div>
-
-                    <button
-                        type="submit"
+            <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-text-primary mb-2">
+                        이메일 주소
+                    </label>
+                    <input
+                        id="email"
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        className="input"
+                        placeholder="your@email.com"
                         disabled={isLoading}
-                        className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                        {isLoading ? (
-                            <>
-                                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                </svg>
-                                로그인 중...
-                            </>
-                        ) : (
-                            '로그인'
-                        )}
-                    </button>
-                </form>
+                    />
+                </div>
 
-                <div className="mt-6 text-center">
-                    <p className="text-sm text-gray-600">
-                        계정이 없으신가요?{' '}
-                        <a
-                            href="/auth/signup"
-                            className="font-medium text-blue-600 hover:text-blue-500"
-                        >
-                            회원가입
-                        </a>
-                    </p>
-                    <p className="mt-2 text-sm text-gray-600">
-                        <a
-                            href="/auth/forgot-password"
-                            className="font-medium text-blue-600 hover:text-blue-500"
-                        >
-                            비밀번호를 잊으셨나요?
-                        </a>
-                    </p>
+                <div>
+                    <label htmlFor="password" className="block text-sm font-medium text-text-primary mb-2">
+                        비밀번호
+                    </label>
+                    <input
+                        id="password"
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                        className="input"
+                        placeholder="비밀번호를 입력하세요"
+                        disabled={isLoading}
+                    />
+                </div>
+
+                <button
+                    type="submit"
+                    disabled={isLoading}
+                    className="btn-primary w-full py-4 text-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover-lift"
+                >
+                    {isLoading ? (
+                        <div className="flex items-center justify-center space-x-3">
+                            <div className="animate-spin rounded-full h-5 w-5 border-2 border-bg-primary border-t-transparent"></div>
+                            <span>로그인 중...</span>
+                        </div>
+                    ) : (
+                        <div className="flex items-center justify-center space-x-2">
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                            </svg>
+                            <span>로그인</span>
+                        </div>
+                    )}
+                </button>
+            </form>
+
+            <div className="mt-8 space-y-4">
+                <div className="flex items-center justify-between">
+                    <a
+                        href="/auth/forgot-password"
+                        className="text-sm text-text-secondary hover:text-accent-primary transition-colors"
+                    >
+                        비밀번호를 잊으셨나요?
+                    </a>
+                    <a
+                        href="/auth/help"
+                        className="text-sm text-text-secondary hover:text-accent-primary transition-colors"
+                    >
+                        로그인 도움말
+                    </a>
                 </div>
             </div>
         </div>
