@@ -58,10 +58,15 @@ logs/
 
 # Environment variables
 .env
+.env.*
+*.env
+*.env.*
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
+*.secure
+*.backup
 
 # Build outputs
 build/
