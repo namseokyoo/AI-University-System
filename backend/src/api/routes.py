@@ -12,6 +12,8 @@ from datetime import datetime
 from .auth import router as auth_router
 # 코스 라우터 임포트
 from .courses import router as courses_router
+# 수강신청 라우터 임포트
+from .enrollments import router as enrollments_router
 
 # 라우터 인스턴스 생성
 api_router = APIRouter()
@@ -19,6 +21,7 @@ api_router = APIRouter()
 # 라우터 포함
 api_router.include_router(auth_router)
 api_router.include_router(courses_router)
+api_router.include_router(enrollments_router)
 
 # Request/Response 모델들
 
